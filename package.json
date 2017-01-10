@@ -8,13 +8,19 @@
     "start": "hubot-dotenv --adapter slack --name otofu.bot"
   },
   "dependencies": {
+    "cheerio-httpcli": "^0.6.10",
+    "co": "^4.6.0",
+    "cron": "^1.2.1",
+    "file-type": "^4.0.0",
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-dotenv": "^1.0.0",
     "hubot-help": "^0.2.0",
     "hubot-redis-brain": "0.0.3",
     "hubot-scripts": "^2.17.2",
-    "hubot-slack": "^4.3.0"
+    "hubot-slack": "^4.3.0",
+    "nightmare": "^2.9.1",
+    "request": "^2.79.0"
   },
   "engines": {
     "node": "0.10.x"
