@@ -32,11 +32,11 @@ const sendAttachments = (robot, room, attachments, options = {as_user: true}) =>
   const client = robot.adapter.client;
   const message = Object.assign(options, {attachments: [attachments]});
   client.web.chat.postMessage(room, '', message);
-}
+};
 
 /**
  * BOTスクリプト本体.
- * @param {object} bot shrikeボット.
+ * @param {object} bot hubot.
  */
 module.exports = (robot) => {
   // BOTに対し `天気 地名 取得対象` とメッセージを送信すると路線リストの遅延情報を返す.
@@ -60,35 +60,46 @@ module.exports = (robot) => {
       pattern = 'weekly';
     }
 
-    for (let weatherList of filterWeatherList) {
-      co(function*() {
-        const weatherInfo = yield YahooWeather.getWeather(weatherList.url, pattern);
-        const attachments = setAttachments(weatherInfo, pattern);
-        const options = {as_user: true};
-        if (pattern === 'today' || pattern === 'tomorrow') {
-          options.as_user = false;
-          options.username = 'weathernews';
-          options.icon_url = weatherInfo.img;
+    co(function*() {
+      for (let weatherList of filterWeatherList) {
+        for (let i = 0; i < 3; i++) {
+          const weatherInfo = yield YahooWeather.getWeather(weatherList.url, pattern);
+          const attachments = setAttachments(weatherInfo, pattern);
+          const options = {as_user: true};
+          if (pattern === 'today' || pattern === 'tomorrow') {
+            options.as_user = false;
+            options.username = 'weathernews';
+            options.icon_url = weatherInfo.img;
+          }
+          if (weatherInfo) {
+            sendAttachments(robot, msg.envelope.room, attachments, options);
+            break;
+          }
         }
-        sendAttachments(robot, msg.envelope.room, attachments, options);
-      });
-    }
+      }
+    });
   });
 
   // 毎朝天気予報を通知する処理.
+  const cron_execute = /^production$/i.test(process.env.NODE_ENV);
   new CronJob('0 30 6 * * *', () => {
     co(function*(){
       for (const WeatherList of WeatherLists) {
-        const channel_id = robot.adapter.client.rtm.dataStore.getChannelOrGroupByName(WeatherList.channel).name;
-        const weatherInfo = yield YahooWeather.getWeather(WeatherList.url, 'today');
-        const attachments = setAttachments(weatherInfo, 'today');
-        const options = {
-          as_user: false,
-          username: 'weathernews',
-          icon_url: weatherInfo.img,
+        for (let i = 0; i < 3; i++) {
+          const channel_id = robot.adapter.client.rtm.dataStore.getChannelOrGroupByName(WeatherList.channel).name;
+          const weatherInfo = yield YahooWeather.getWeather(WeatherList.url, 'today');
+          const attachments = setAttachments(weatherInfo, 'today');
+          const options = {
+            as_user: false,
+            username: 'weathernews',
+            icon_url: weatherInfo.img,
+          };
+          if (weatherInfo) {
+            sendAttachments(robot, channel_id, attachments, options);
+            break;
+          }
         }
-        sendAttachments(robot, channel_id, attachments, options);
       }
-    })
-  }, null, true);
+    });
+  }, null, cron_execute);
 };
