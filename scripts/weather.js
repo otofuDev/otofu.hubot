@@ -1,3 +1,12 @@
+// Description:
+//   天気予報通知.
+//
+// Commands:
+//   hubot [天気|weather] <area> <今日|today|明日|tomorrow|週|week|weekly> - 該当エリアの今日or明日or週間天気を表示.
+//
+// Author:
+//   0tofu <otofu.xxx@gmail.com>
+
 const co = require('co');
 const CronJob = require('cron').CronJob;
 const YahooWeather = require('../lib/YahooWeather');
