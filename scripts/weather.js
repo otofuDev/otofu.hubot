@@ -9,7 +9,7 @@
 
 const co = require('co');
 const CronJob = require('cron').CronJob;
-const Utils = require('../lib/lib/Utils');
+const Utils = require('../lib/Utils');
 const YahooWeather = require('../lib/YahooWeather');
 
 const WeatherLists = [
