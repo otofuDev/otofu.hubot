@@ -4,6 +4,9 @@
   "private": true,
   "author": "otofu",
   "description": "Slack Bot.",
+  "engines": {
+    "node": "7"
+  },
   "scripts": {
     "start": "hubot-dotenv --adapter slack --name otofu.bot"
   },
@@ -18,11 +21,8 @@
     "hubot-help": "^0.2.0",
     "hubot-redis-brain": "0.0.3",
     "hubot-scripts": "^2.17.2",
-    "hubot-slack": "^4.3.0",
+    "hubot-slack": "^4.3.1",
     "nightmare": "^2.9.1",
     "request": "^2.79.0"
-  },
-  "engines": {
-    "node": "0.10.x"
   }
 }
