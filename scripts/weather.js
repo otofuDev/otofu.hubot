@@ -9,6 +9,7 @@
 
 const co = require('co');
 const CronJob = require('cron').CronJob;
+const Utils = require('../lib/lib/Utils');
 const YahooWeather = require('../lib/YahooWeather');
 
 const WeatherLists = [
@@ -84,6 +85,7 @@ module.exports = (robot) => {
             sendAttachments(robot, msg.envelope.room, attachments, options);
             break;
           }
+          Utils.sleep(3);
         }
       }
     });
