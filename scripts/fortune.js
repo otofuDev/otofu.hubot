@@ -22,5 +22,6 @@ module.exports = (robot) => {
       const client = robot.adapter.client;
       client.web.chat.postMessage(msg.envelope.room, '', {as_user: true, attachments: [attachments]});
     });
+    msg.finish();
   });
 };

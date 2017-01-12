@@ -87,6 +87,7 @@ module.exports = (robot) => {
         }
       }
     });
+    msg.finish();
   });
 
   // 毎朝天気予報を通知する処理.

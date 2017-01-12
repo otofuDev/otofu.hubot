@@ -69,6 +69,7 @@ module.exports = (robot) => {
         sendAttachments(robot, msg.envelope.room, attachments);
       }
     });
+    msg.finish();
   });
 
   // 路線リストの遅延情報を取得するcronジョブ.

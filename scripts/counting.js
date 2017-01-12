@@ -51,6 +51,7 @@ module.exports = (robot) => {
         sendAttachments(robot, msg.envelope.room, attachments);
       }
     });
+    msg.finish();
   });
 
   // 毎朝イベント日を通知する処理.
