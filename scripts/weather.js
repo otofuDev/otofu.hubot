@@ -85,7 +85,7 @@ module.exports = (robot) => {
             sendAttachments(robot, msg.envelope.room, attachments, options);
             break;
           }
-          Utils.sleep(3);
+          yield Utils.sleep(3);
         }
       }
     });
