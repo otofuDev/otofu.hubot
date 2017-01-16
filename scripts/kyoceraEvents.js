@@ -1,3 +1,9 @@
+// Description:
+//   京セラドーム イベント通知.
+//
+// Author:
+//   0tofu <otofu.xxx@gmail.com>
+
 const co = require('co');
 const CronJob = require('cron').CronJob;
 const client = require('cheerio-httpcli');

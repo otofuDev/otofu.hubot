@@ -9,7 +9,6 @@
 
 const co = require('co');
 const CronJob = require('cron').CronJob;
-const Utils = require('../lib/Utils');
 const YahooWeather = require('../lib/YahooWeather');
 
 const WeatherLists = [
@@ -72,21 +71,15 @@ module.exports = (robot) => {
 
     co(function*() {
       for (let weatherList of filterWeatherList) {
-        for (let i = 0; i < 3; i++) {
-          const weatherInfo = yield YahooWeather.getWeather(weatherList.url, pattern);
-          const attachments = setAttachments(weatherInfo, pattern);
-          const options = {as_user: true};
-          if (pattern === 'today' || pattern === 'tomorrow') {
-            options.as_user = false;
-            options.username = 'weathernews';
-            options.icon_url = weatherInfo.img;
-          }
-          if (weatherInfo) {
-            sendAttachments(robot, msg.envelope.room, attachments, options);
-            break;
-          }
-          yield Utils.sleep(3);
+        const weatherInfo = yield YahooWeather.getWeather(weatherList.url, pattern);
+        const attachments = setAttachments(weatherInfo, pattern);
+        const options = {as_user: true};
+        if (pattern === 'today' || pattern === 'tomorrow') {
+          options.as_user = false;
+          options.username = 'weathernews';
+          options.icon_url = weatherInfo.img;
         }
+        sendAttachments(robot, msg.envelope.room, attachments, options);
       }
     });
     msg.finish();
@@ -97,20 +90,15 @@ module.exports = (robot) => {
   new CronJob('0 30 6 * * *', () => {
     co(function*(){
       for (const WeatherList of WeatherLists) {
-        for (let i = 0; i < 3; i++) {
-          const channel_id = robot.adapter.client.rtm.dataStore.getChannelOrGroupByName(WeatherList.channel).name;
-          const weatherInfo = yield YahooWeather.getWeather(WeatherList.url, 'today');
-          const attachments = setAttachments(weatherInfo, 'today');
-          const options = {
-            as_user: false,
-            username: 'weathernews',
-            icon_url: weatherInfo.img,
-          };
-          if (weatherInfo) {
-            sendAttachments(robot, channel_id, attachments, options);
-            break;
-          }
-        }
+        const channel_id = robot.adapter.client.rtm.dataStore.getChannelOrGroupByName(WeatherList.channel).name;
+        const weatherInfo = yield YahooWeather.getWeather(WeatherList.url, 'today');
+        const attachments = setAttachments(weatherInfo, 'today');
+        const options = {
+          as_user: false,
+          username: 'weathernews',
+          icon_url: weatherInfo.img,
+        };
+        sendAttachments(robot, channel_id, attachments, options);
       }
     });
   }, null, cron_execute);
