@@ -8,7 +8,7 @@
     "node": "7"
   },
   "scripts": {
-    "start": "hubot-dotenv --adapter slack --name otofu.bot"
+    "start": "hubot-dotenv --adapter slack --name otofu.bot --disable-httpd"
   },
   "dependencies": {
     "cheerio-httpcli": "^0.6.10",
