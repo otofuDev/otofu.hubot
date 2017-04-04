@@ -11,6 +11,7 @@
     "start": "hubot-dotenv --adapter slack --name otofu.bot"
   },
   "dependencies": {
+    "aa": "^0.1.40",
     "cheerio-httpcli": "^0.6.10",
     "co": "^4.6.0",
     "coffee-script": "^1.12.2",

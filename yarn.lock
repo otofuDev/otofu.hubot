@@ -27,6 +27,12 @@
   version "6.0.63"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.63.tgz#e08acbbd5946e0e95990b1c76f3ce5b7882a48eb"
 
+aa@^0.1.40:
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/aa/-/aa-0.1.40.tgz#decda211e17074ea5bcf19f85d06734c682ad316"
+  dependencies:
+    promise-thunk ">=0.1.16"
+
 accepts@~1.2.12, accepts@~1.2.13:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.2.13.tgz#e5f1f3928c6d95fd96558c36ec3d9d0de4a6ecea"
@@ -1537,6 +1543,10 @@ progress-stream@^1.1.0:
   dependencies:
     speedometer "~0.1.2"
     through2 "~0.2.3"
+
+promise-thunk@>=0.1.16:
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/promise-thunk/-/promise-thunk-0.1.17.tgz#0df2784b8d143d56a21dc383025360510d04e33b"
 
 proxy-addr@~1.0.8:
   version "1.0.10"
