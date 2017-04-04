@@ -13,7 +13,7 @@ const HatenaCounting = require('../lib/HatenaCounting');
 
 const CountLists = [
   {name: 'SUPER GT 2017 Rd.6 SUZUKA', url: 'http://counting.hatelabo.jp/count/u7pi5kfr92', channel: 'supergt2017'},
-  {name: 'モータースポーツファン感謝デー', url: 'http://counting.hatelabo.jp/count/mhimq2tkf3', channel: 'supergt2017'},
+//  {name: 'モータースポーツファン感謝デー', url: 'http://counting.hatelabo.jp/count/mhimq2tkf3', channel: 'supergt2017'},
 ];
 
 /**

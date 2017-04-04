@@ -33,6 +33,7 @@ module.exports = (robot) => {
     msg.finish();
   });
 
+/*
   const cron_execute = /^production$/i.test(process.env.NODE_ENV);
   new CronJob('0 0 9 * * *', () => {
     co(function*() {
@@ -60,4 +61,5 @@ module.exports = (robot) => {
       client.web.chat.postMessage(channel_id, '', {as_user: true, attachments: [weather_attachments]});
     });
   }, null, cron_execute);
+*/
 };
