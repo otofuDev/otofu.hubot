@@ -11,8 +11,6 @@ const watch_lists = {
   },
 };
 
-const yodobashi_url = 'http://www.yodobashi.com/%E4%BB%BB%E5%A4%A9%E5%A0%82-Nintendo-Nintendo-Switch-Joy-Con-L-%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%96%E3%83%AB%E3%83%BC-R-%E3%83%8D%E3%82%AA%E3%83%B3%E3%83%AC%E3%83%83%E3%83%89-Nintendo-Switch%E6%9C%AC%E4%BD%93/pd/100000001003431566/';
-
 const getResult = (url) => {
   return aa(function*() {
     for (let i = 0; i < 3; i++) {
