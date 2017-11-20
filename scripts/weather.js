@@ -12,7 +12,7 @@ const CronJob = require('cron').CronJob;
 const YahooWeather = require('../lib/YahooWeather');
 
 const WeatherLists = [
-  {name: '大阪', url: 'http://weather.yahoo.co.jp/weather/jp/27/6200.html', channel: 'weather'},
+  {name: '横浜', url: 'https://weather.yahoo.co.jp/weather/jp/14/4610.html', channel: 'weather'},
   {name: '名古屋', url: 'http://weather.yahoo.co.jp/weather/jp/23/5110.html', channel: 'nagoya'},
 ];
 
